@@ -14,7 +14,7 @@ export const verticals = [
         url: "https://lawstack.co",
         screenshot: "/screenshots/lawstack-hero.jpg",
         description:
-          "Clio-connected email tools for solo and small firms — deadline reminders and unbilled-time tracking, no dashboard or login required.",
+          "Clio-connected email tools for solo and small firms - deadline reminders and unbilled-time tracking, no dashboard or login required.",
         status: "production",
         stack: ["React", "TypeScript", "Supabase", "Resend", "Netlify"],
       },
@@ -48,7 +48,7 @@ export const verticals = [
         url: "https://checkmyspins.com",
         screenshot: "/screenshots/checkmyspins-hero.jpg",
         description:
-          "Dispatch lookup for ILWU Local 23 longshore workers. Your registration number stays on your phone — nothing is stored server-side.",
+          "Dispatch lookup for ILWU Local 23 longshore workers. Your registration number stays on your phone - nothing is stored server-side.",
         status: "production",
       },
       {
@@ -64,7 +64,7 @@ export const verticals = [
         url: null,
         screenshot: null,
         description:
-          "A job board for Alaska and PNW commercial fishing crews — captains post by web or text, crew apply in under 60 seconds. Flat pay-once pricing.",
+          "A job board for Alaska and PNW commercial fishing crews - captains post by web or text, crew apply in under 60 seconds. Flat pay-once pricing.",
         status: "in development",
       },
     ],

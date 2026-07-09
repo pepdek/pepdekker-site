@@ -1,5 +1,5 @@
 // Hand-drawn technical marks, one per industry vertical. Deliberately not
-// a lucide icon — these are the closest thing this site has to a logotype.
+// a lucide icon - these are the closest thing this site has to a logotype.
 
 function LegalMark(props) {
   return (

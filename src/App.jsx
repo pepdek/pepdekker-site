@@ -51,7 +51,7 @@ function Hero() {
     <section id="top" className="pt-40 pb-28 px-5 sm:px-8">
       <div className="mx-auto max-w-6xl">
         <p className="font-mono text-xs tracking-wide text-accent mb-5">
-          TACOMA, WA — SHIPS SOFTWARE NOBODY ELSE WILL BUILD
+          TACOMA, WA - SHIPS SOFTWARE NOBODY ELSE WILL BUILD
         </p>
         <h1 className="text-4xl sm:text-6xl font-semibold tracking-tight leading-[1.05] max-w-3xl">
           I build software for industries too boring for Silicon Valley to
@@ -60,7 +60,7 @@ function Hero() {
         <p className="mt-6 text-lg text-muted max-w-2xl leading-relaxed">
           Solo lawyers. Fishing crews. Longshoremen. Financial advisors
           getting quietly out-hustled by better tools. Nobody's raising a
-          Series A for any of it — which is exactly why it's still broken,
+          Series A for any of it - which is exactly why it's still broken,
           and exactly why there's room to fix it. {liveCount} systems live
           across {verticals.length} industries. All shipped. None of it
           demo-ware.
@@ -188,7 +188,7 @@ function Footer() {
         <div>
           <h2 className="text-2xl font-semibold tracking-tight mb-2">Say hi.</h2>
           <p className="text-muted text-sm mb-4 max-w-sm">
-            Real email, no funnel, no newsletter. I read it myself — there's
+            Real email, no funnel, no newsletter. I read it myself - there's
             no one else here.
           </p>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
