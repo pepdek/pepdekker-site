@@ -9,29 +9,15 @@ const APPLICATION_CATEGORY = {
 };
 
 function jsonLdFor(project) {
-  const graph = [
-    {
-      "@type": "SoftwareApplication",
-      name: project.name,
-      description: project.summary,
-      ...(project.url ? { url: project.url } : {}),
-      applicationCategory: APPLICATION_CATEGORY[project.verticalId] ?? "BusinessApplication",
-      creator: { "@type": "Person", name: "Pep Dekker" },
-    },
-  ];
-
-  if (project.faq?.length) {
-    graph.push({
-      "@type": "FAQPage",
-      mainEntity: project.faq.map((item) => ({
-        "@type": "Question",
-        name: item.q,
-        acceptedAnswer: { "@type": "Answer", text: item.a },
-      })),
-    });
-  }
-
-  return { "@context": "https://schema.org", "@graph": graph };
+  return {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: project.name,
+    description: project.summary,
+    ...(project.url ? { url: project.url } : {}),
+    applicationCategory: APPLICATION_CATEGORY[project.verticalId] ?? "BusinessApplication",
+    creator: { "@type": "Person", name: "Pep Dekker" },
+  };
 }
 
 export function ProjectPage({ project }) {
@@ -101,22 +87,6 @@ export function ProjectPage({ project }) {
                 </li>
               ))}
             </ul>
-          </section>
-        )}
-
-        {project.faq?.length > 0 && (
-          <section aria-labelledby="faq-heading" className="mb-10">
-            <h2 id="faq-heading" className="pixel-heading text-sm mb-4">
-              FAQ
-            </h2>
-            <dl className="flex flex-col gap-5">
-              {project.faq.map((item) => (
-                <div key={item.q}>
-                  <dt className="font-semibold text-ink mb-1">{item.q}</dt>
-                  <dd className="text-muted leading-relaxed">{item.a}</dd>
-                </div>
-              ))}
-            </dl>
           </section>
         )}
 

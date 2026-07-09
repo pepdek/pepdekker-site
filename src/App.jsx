@@ -18,9 +18,6 @@ function Nav() {
               {v.label.toUpperCase()}
             </a>
           ))}
-          <a href="/#faq" className="hover:text-ink transition-colors">
-            FAQ
-          </a>
           <a href="/#contact" className="hover:text-ink transition-colors">
             CONTACT
           </a>
