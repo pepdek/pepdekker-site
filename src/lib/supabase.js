@@ -9,5 +9,5 @@ const key = import.meta.env.VITE_SUPABASE_ANON_KEY;
 export const supabase = url && key ? createClient(url, key) : null;
 
 if (!supabase && import.meta.env.DEV) {
-  console.warn("Supabase env vars missing - guestbook, ticker, and hit counter are disabled.");
+  console.warn("Supabase env vars missing - ticker and hit counter are disabled.");
 }

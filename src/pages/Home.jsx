@@ -3,7 +3,6 @@ import { VerticalMark } from "@/components/VerticalMark";
 import { ProjectCard } from "@/components/ProjectCard";
 import { useReveal } from "@/hooks/useReveal";
 import { BuildLogTicker } from "@/components/BuildLogTicker";
-import { Guestbook } from "@/components/Guestbook";
 
 function Hero() {
   return (
@@ -143,7 +142,6 @@ export function Home() {
         <VerticalSection key={vertical.id} vertical={vertical} />
       ))}
       <HomeFAQ />
-      <Guestbook />
     </>
   );
 }

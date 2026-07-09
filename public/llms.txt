@@ -25,5 +25,4 @@ Contact: dekpep@gmail.com · GitHub: https://github.com/pepdek · LinkedIn: http
 
 ## Other pages
 
-- [Guestbook](https://pepdekker.com/#guestbook): Real, moderated guest entries answering "what industry do you wish had better software?"
 - [Sitemap](https://pepdekker.com/sitemap.xml)

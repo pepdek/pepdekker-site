@@ -21,9 +21,6 @@ function Nav() {
           <a href="/#faq" className="hover:text-ink transition-colors">
             FAQ
           </a>
-          <a href="/#guestbook" className="hover:text-ink transition-colors">
-            GUESTBOOK
-          </a>
           <a href="/#contact" className="hover:text-ink transition-colors">
             CONTACT
           </a>
