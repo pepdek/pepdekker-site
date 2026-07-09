@@ -43,8 +43,8 @@ const MARKS = {
   financial: FinancialMark,
 };
 
-export function VerticalMark({ id, className }) {
+export function VerticalMark({ id, className, ...rest }) {
   const Mark = MARKS[id];
   if (!Mark) return null;
-  return <Mark className={className} />;
+  return <Mark className={className} aria-hidden="true" {...rest} />;
 }

@@ -66,10 +66,10 @@ export function Guestbook() {
   }
 
   return (
-    <section id="guestbook" className="py-20 px-5 sm:px-8 scroll-mt-14 border-t border-border">
+    <section id="guestbook" aria-labelledby="guestbook-heading" className="py-20 px-5 sm:px-8 scroll-mt-14 border-t border-border">
       <div className="mx-auto max-w-6xl grid lg:grid-cols-2 gap-10">
         <div>
-          <h2 className="pixel-heading text-xl sm:text-2xl mb-3 text-retro-cyan">Guestbook</h2>
+          <h2 id="guestbook-heading" className="pixel-heading text-xl sm:text-2xl mb-3 text-retro-cyan">Guestbook</h2>
           <p className="text-muted mb-6 max-w-md">
             What industry do you wish had better software? Sign the guestbook.
           </p>

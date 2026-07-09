@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@theme inline {
+@theme {
   --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --font-sans:
     ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -33,6 +33,16 @@
 
 :root {
   color-scheme: dark;
+
+  /* Tailwind only emits a @theme token's CSS variable if a matching utility
+     class (e.g. bg-legal) is actually found by its scanner. legal/maritime
+     aren't used as classes anywhere, only via var(--color-x) in inline
+     styles (VerticalMark, tick-corners), so they were being silently
+     tree-shaken out - a real bug, the icons/corner-ticks never showed
+     per-vertical color. Redeclaring them here guarantees they always exist. */
+  --color-legal: #7aa8ff;
+  --color-maritime: #ff8a3d;
+  --color-financial: #4fd1a5;
 }
 
 html {
