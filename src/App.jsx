@@ -2,6 +2,10 @@ import { ArrowUpRight, Mail, Github, Linkedin } from "lucide-react";
 import { verticals, liveCount } from "@/data/projects";
 import { VerticalMark } from "@/components/VerticalMark";
 import { useReveal } from "@/hooks/useReveal";
+import { BuildLogTicker } from "@/components/BuildLogTicker";
+import { Guestbook } from "@/components/Guestbook";
+import { HitCounter } from "@/components/HitCounter";
+import { Webring } from "@/components/Webring";
 
 const STATUS_LABEL = {
   production: "Production",
@@ -21,7 +25,7 @@ function Nav() {
   return (
     <header className="fixed top-0 inset-x-0 z-50 border-b border-border bg-bg/85 backdrop-blur">
       <div className="mx-auto max-w-6xl px-5 sm:px-8 h-14 flex items-center justify-between font-mono text-xs tracking-wide">
-        <a href="#top" className="text-ink font-semibold">
+        <a href="#top" className="pixel-heading text-ink text-[11px]">
           PEP DEKKER
         </a>
         <nav className="hidden sm:flex items-center gap-6 text-muted">
@@ -30,6 +34,9 @@ function Nav() {
               {v.label.toUpperCase()}
             </a>
           ))}
+          <a href="#guestbook" className="hover:text-ink transition-colors">
+            GUESTBOOK
+          </a>
           <a href="#contact" className="hover:text-ink transition-colors">
             CONTACT
           </a>
@@ -48,7 +55,7 @@ function Nav() {
 
 function Hero() {
   return (
-    <section id="top" className="pt-40 pb-28 px-5 sm:px-8">
+    <section id="top" className="pt-20 sm:pt-28 pb-28 px-5 sm:px-8">
       <div className="mx-auto max-w-6xl">
         <p className="font-mono text-xs tracking-wide text-accent mb-5">
           TACOMA, WA - SHIPS SOFTWARE NOBODY ELSE WILL BUILD
@@ -90,7 +97,7 @@ function ProjectCard({ project, verticalId }) {
   return (
     <div
       ref={ref}
-      className={`reveal ${visible ? "reveal-visible" : ""} tick-corners bg-panel border border-border rounded-sm overflow-hidden flex flex-col`}
+      className={`reveal ${visible ? "reveal-visible" : ""} tick-corners bg-panel bevel-raised overflow-hidden flex flex-col`}
       style={{ "--tick-color": tickColor }}
     >
       <div className="aspect-[16/10] bg-panel-2 border-b border-border relative overflow-hidden">
@@ -119,7 +126,7 @@ function ProjectCard({ project, verticalId }) {
         {project.stack && (
           <ul className="flex flex-wrap gap-1.5 mt-1 font-mono text-[11px] text-dim">
             {project.stack.map((tech) => (
-              <li key={tech} className="border border-border rounded-sm px-1.5 py-0.5">
+              <li key={tech} className="border border-border px-1.5 py-0.5">
                 {tech}
               </li>
             ))}
@@ -162,11 +169,9 @@ function VerticalSection({ vertical }) {
               style={{ color: `var(--color-${vertical.id})` }}
             />
             <div>
-              <p className="font-mono text-xs text-dim mb-1">{vertical.kicker}</p>
-              <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
-                {vertical.label}
-              </h2>
-              <p className="text-muted mt-2 max-w-xl">{vertical.intro}</p>
+              <p className="pixel-heading text-[10px] text-dim mb-2">{vertical.kicker}</p>
+              <h2 className="pixel-heading text-lg sm:text-xl">{vertical.label}</h2>
+              <p className="text-muted mt-3 max-w-xl">{vertical.intro}</p>
             </div>
           </div>
         </div>
@@ -186,7 +191,7 @@ function Footer() {
     <footer id="contact" className="border-t border-border px-5 sm:px-8 py-16">
       <div className="mx-auto max-w-6xl flex flex-col sm:flex-row sm:items-end justify-between gap-8">
         <div>
-          <h2 className="text-2xl font-semibold tracking-tight mb-2">Say hi.</h2>
+          <h2 className="pixel-heading text-lg mb-3">Say hi.</h2>
           <p className="text-muted text-sm mb-4 max-w-sm">
             Real email, no funnel, no newsletter. I read it myself - there's
             no one else here.
@@ -223,6 +228,16 @@ function Footer() {
           TACOMA, WA · {new Date().getFullYear()}
         </p>
       </div>
+
+      <div className="mx-auto max-w-6xl mt-12 pt-8 border-t border-border flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+        <Webring />
+        <div className="flex flex-col items-start sm:items-end gap-2">
+          <HitCounter />
+          <p className="font-mono text-[10px] text-dim">
+            Best viewed at 1024x768. (It's responsive. This is a bit.)
+          </p>
+        </div>
+      </div>
     </footer>
   );
 }
@@ -230,12 +245,17 @@ function Footer() {
 export default function App() {
   return (
     <div className="min-h-screen">
+      <div className="scanlines" aria-hidden="true" />
       <Nav />
       <main>
+        <div className="pt-14">
+          <BuildLogTicker />
+        </div>
         <Hero />
         {verticals.map((vertical) => (
           <VerticalSection key={vertical.id} vertical={vertical} />
         ))}
+        <Guestbook />
       </main>
       <Footer />
     </div>

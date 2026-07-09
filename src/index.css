@@ -4,6 +4,7 @@
   --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --font-sans:
     ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-pixel: "Press Start 2P", var(--font-mono);
 
   --color-bg: #0a1219;
   --color-panel: #0f1c26;
@@ -12,7 +13,8 @@
   --color-border-strong: rgba(255, 255, 255, 0.18);
   --color-ink: #edf2f5;
   --color-muted: #8fa2ae;
-  --color-dim: #56666f;
+  /* Bumped from the original #56666f - that failed 4.5:1 on --color-bg (3.17:1). */
+  --color-dim: #7a8e9c;
 
   --color-accent: #ff8a3d;
   --color-accent-ink: #1a0f04;
@@ -20,6 +22,13 @@
   --color-legal: #7aa8ff;
   --color-maritime: #ff8a3d;
   --color-financial: #4fd1a5;
+
+  /* Retro accent set, phase 2. Verified 4.5:1+ against bg/panel/panel-2
+     with a WCAG contrast script before shipping - see commit notes. */
+  --color-retro-cyan: #4fd8e8;
+  --color-retro-magenta: #ff5fb3;
+  --color-led: #3dd873;
+  --color-led-bg: #0a1f14;
 }
 
 :root {
@@ -110,4 +119,92 @@ body {
   right: -1px;
   border-bottom: 1.5px solid var(--tick-color, var(--color-border-strong));
   border-right: 1.5px solid var(--tick-color, var(--color-border-strong));
+}
+
+/* --- Phase 2: 1990s chrome + retro skin -------------------------------- */
+
+.pixel-heading {
+  font-family: var(--font-pixel);
+  line-height: 1.6;
+}
+
+/* Raised chrome, like a Windows 95 button. Light top/left, dark bottom/right,
+   hard corners - no border-radius, no soft drop shadow. */
+.bevel-raised {
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 0;
+  border-top-color: rgba(255, 255, 255, 0.35);
+  border-left-color: rgba(255, 255, 255, 0.35);
+  border-bottom-color: rgba(0, 0, 0, 0.6);
+  border-right-color: rgba(0, 0, 0, 0.6);
+}
+.bevel-raised:active {
+  border-top-color: rgba(0, 0, 0, 0.6);
+  border-left-color: rgba(0, 0, 0, 0.6);
+  border-bottom-color: rgba(255, 255, 255, 0.35);
+  border-right-color: rgba(255, 255, 255, 0.35);
+}
+
+/* Pressed-in chrome for text inputs and readout panels - the inverse bevel. */
+.bevel-inset {
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 0;
+  border-top-color: rgba(0, 0, 0, 0.6);
+  border-left-color: rgba(0, 0, 0, 0.6);
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+  border-right-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Faint scanline texture, decorative only. Opacity kept low enough to never
+   compete with text; dropped entirely for reduced-motion/increased-contrast
+   preferences since it's pure texture, not content. */
+.scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 40;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.035) 0px,
+    rgba(255, 255, 255, 0.035) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+@media (prefers-reduced-motion: reduce), (prefers-contrast: more) {
+  .scanlines {
+    display: none;
+  }
+}
+
+/* Build log ticker */
+.ticker-content {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll 40s linear infinite;
+}
+.ticker-track {
+  overflow: hidden;
+}
+.ticker-track:hover .ticker-content,
+.ticker-track:focus .ticker-content {
+  animation-play-state: paused;
+}
+@keyframes ticker-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    overflow-x: auto;
+  }
+  .ticker-content {
+    animation: none;
+  }
 }
