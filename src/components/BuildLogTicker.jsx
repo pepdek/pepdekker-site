@@ -6,6 +6,7 @@ export function BuildLogTicker() {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
+    if (!supabase) return;
     let cancelled = false;
     supabase
       .from("build_log")

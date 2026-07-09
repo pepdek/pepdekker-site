@@ -19,6 +19,7 @@ export function Guestbook() {
   const [status, setStatus] = useState({ state: "idle", message: "" });
 
   useEffect(() => {
+    if (!supabase) return;
     let cancelled = false;
     supabase
       .from("guestbook_entries")
@@ -35,6 +36,8 @@ export function Guestbook() {
       cancelled = true;
     };
   }, []);
+
+  if (!supabase) return null;
 
   async function handleSubmit(e) {
     e.preventDefault();

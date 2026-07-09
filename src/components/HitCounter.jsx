@@ -6,12 +6,14 @@ export function HitCounter() {
   const called = useRef(false);
 
   useEffect(() => {
-    if (called.current) return; // StrictMode double-invoke guard
+    if (!supabase || called.current) return; // StrictMode double-invoke guard
     called.current = true;
     supabase.rpc("increment_hit_counter").then(({ data, error }) => {
       if (!error) setCount(data);
     });
   }, []);
+
+  if (!supabase) return null;
 
   const digits = String(count ?? 0).padStart(6, "0").split("");
 
