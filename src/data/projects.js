@@ -14,7 +14,7 @@ export const verticals = [
         url: "https://lawstack.co",
         screenshot: "/screenshots/lawstack-hero.jpg",
         description:
-          "Clio-connected email tools for solo and small firms - deadline reminders and unbilled-time tracking, no dashboard or login required.",
+          "AI-Employees that are Clio-connected for solo and small firms - 48 skills rolled up into one high-agency billing coordinator AI-agent at 10th the price - practice coordinator & client coordinator in development.",
         status: "production",
         stack: ["React", "TypeScript", "Supabase", "Resend", "Netlify"],
       },
