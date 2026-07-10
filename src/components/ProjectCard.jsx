@@ -4,6 +4,7 @@ import { useReveal } from "@/hooks/useReveal";
 
 export const STATUS_LABEL = {
   production: "Production",
+  live: "Live",
   "active wip": "Active WIP",
   "early access": "Early access",
   "in development": "In development",
@@ -11,6 +12,7 @@ export const STATUS_LABEL = {
 
 export const STATUS_DOT = {
   production: "bg-financial",
+  live: "bg-financial",
   "active wip": "bg-accent",
   "early access": "bg-accent",
   "in development": "bg-dim",

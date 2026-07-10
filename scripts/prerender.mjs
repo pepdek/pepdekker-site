@@ -5,7 +5,7 @@
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname } from "node:path";
 import { render } from "../dist-ssr/entry-server.js";
-import { allProjects } from "../src/data/projects.js";
+import { verticals, allProjects, liveCount } from "../src/data/projects.js";
 
 const SITE = "https://pepdekker.com";
 const template = readFileSync("dist/index.html", "utf-8");
@@ -72,7 +72,12 @@ for (const route of routes) {
   console.log(`prerendered ${route.path} -> ${route.outPath}`);
 }
 
-const urls = routes
+// unlisted projects (concept demos referencing a third party) still get a
+// page and a card, they just aren't promoted in the directories crawlers
+// and search engines prioritize.
+const listedRoutes = routes.filter((r) => !r.project?.unlisted);
+
+const urls = listedRoutes
   .map((r) => `  <url><loc>${SITE}${r.path === "/" ? "/" : r.path + "/"}</loc></url>`)
   .join("\n");
 writeFileSync(
@@ -80,3 +85,42 @@ writeFileSync(
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`
 );
 console.log("wrote dist/sitemap.xml");
+
+// llms.txt - generated from the same data as the site, so the project list
+// and "N live systems" count can't drift out of sync the way a hand-written
+// copy would.
+const listedByVertical = verticals
+  .map((v) => ({ ...v, projects: v.projects.filter((p) => !p.unlisted) }))
+  .filter((v) => v.projects.length > 0);
+
+const sections = listedByVertical
+  .map((v) => {
+    const items = v.projects
+      .map((p) => {
+        const statusNote = p.url ? "" : " In development, no public URL yet.";
+        const link = p.url ? ` ${p.url}` : "";
+        return `- [${p.name}](${SITE}/projects/${p.slug}/): ${p.description}${statusNote}${link}`;
+      })
+      .join("\n");
+    return `## ${v.label}\n\n${items}`;
+  })
+  .join("\n\n");
+
+const llmsTxt = `# Pep Dekker
+
+> Pep Dekker builds production software for industries that don't get good
+> software: legal ops, commercial fishing labor, longshore dispatch, and
+> marine finance. Based in Tacoma, WA. ${liveCount} live systems across
+> ${verticals.length} industries, all shipped and in production or active use, not demos.
+
+Contact: dekpep@gmail.com · GitHub: https://github.com/pepdek · LinkedIn: https://www.linkedin.com/in/pepdekker
+
+${sections}
+
+## Other pages
+
+- [Sitemap](${SITE}/sitemap.xml)
+`;
+
+writeFileSync("dist/llms.txt", llmsTxt);
+console.log("wrote dist/llms.txt");

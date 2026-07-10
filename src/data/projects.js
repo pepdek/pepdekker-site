@@ -89,6 +89,33 @@ export const verticals = [
           "TenderCrew is an in-development job board for Alaska and Pacific Northwest commercial fishing crews, built by Pep Dekker. Captains will post openings by web or text, and crew will be able to apply in under 60 seconds.",
         status: "in development",
       },
+      {
+        slug: "helm",
+        name: "Helm",
+        url: "https://helm.pepdekker.com",
+        screenshot: "/screenshots/helm-hero.jpg",
+        description:
+          "A factory-operations command center concept: 25 manager tasks, daily to annual, in one dashboard, with two working AI agents already reconciling yield data and drafting shift summaries.",
+        summary:
+          "Helm is a factory-operations command center concept for plant managers, built by Pep Dekker. It brings 25 manager tasks spanning daily to annual responsibilities into one dashboard, with two working AI agents already reconciling yield data and drafting shift summaries.",
+        status: "live",
+        // Not promoted in sitemap.xml/llms.txt - concept demo, kept out of the
+        // directories AI crawlers and search engines prioritize. Still has its
+        // own page and card, same as everything else.
+        unlisted: true,
+      },
+      {
+        slug: "radiocheck",
+        name: "Radio Check",
+        url: "https://radiocheck.pepdekker.com",
+        screenshot: "/screenshots/radiocheck-hero.jpg",
+        description:
+          "An SMS-first AI agent concept built for crews with no reliable data connection at sea, answering season, delivery, and documentation questions in seconds instead of a phone calls.",
+        summary:
+          "Radio Check is an SMS-first AI agent concept for fishing crews without reliable data connections at sea, built by Pep Dekker. It answers season, delivery, and documentation questions in seconds instead of requiring a phone call.",
+        status: "live",
+        unlisted: true,
+      },
     ],
   },
   {
