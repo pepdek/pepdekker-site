@@ -75,6 +75,27 @@ export function ProjectPage({ project }) {
 
         <p className="text-muted leading-relaxed mb-8">{project.description}</p>
 
+        {project.howItWorks && (
+          <section aria-labelledby="how-heading" className="mb-10">
+            <h2 id="how-heading" className="pixel-heading text-sm mb-4">
+              How it works
+            </h2>
+            <ol className="flex flex-col gap-4">
+              {project.howItWorks.map((step, i) => (
+                <li key={step.title} className="flex gap-4">
+                  <span className="pixel-heading text-xs text-dim shrink-0 pt-0.5">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <p className="font-semibold text-ink">{step.title}</p>
+                    <p className="text-muted leading-relaxed">{step.detail}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </section>
+        )}
+
         {project.stack && (
           <section aria-labelledby="stack-heading" className="mb-10">
             <h2 id="stack-heading" className="pixel-heading text-sm mb-3">
